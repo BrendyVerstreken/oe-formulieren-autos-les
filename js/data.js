@@ -1,5 +1,5 @@
 var autos = 
-      [
+[
       {
             'Merk' : 'Opel',
             'Type' : 'Zafira',
@@ -18,7 +18,7 @@ var autos =
             'Motor': 'Elektrisch',
             'Opties': ['GPS', 'Cruise control', 'Selfdriving', 'Regensensor']
       }                     
-      ];
+];
 
 var motorTypes = ["Benzine", "Diesel", "Elektrisch", "Hybride"];
 
