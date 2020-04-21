@@ -1,6 +1,6 @@
 "use strict";
 var btnSlaOp;
-var divFeedBack, divMotor, divOpties;
+var divFeedBack, divFormElements, divMotor, divOpties;
 var pre;
 var slcAutos;
 var txtMerk, txtType;
@@ -17,6 +17,7 @@ function Initieer() {
 const KoppelElementen = () => {
       btnSlaOp = document.getElementById("btnSlaOp");
       divFeedBack = document.getElementById("divFeedBack");
+      divFormElements = document.getElementById("divFormElements");
       divMotor = document.getElementById("divMotor");
       divOpties = document.getElementById("divOpties");
       pre = document.getElementById("pre");
@@ -31,7 +32,7 @@ const KoppelEvents = () => {
             let index = slcAutos.selectedIndex;
             autos[index] = auto;
             ToonAutos();
-            //MaakDomElementenLeeg();
+            MaakInputOngedaan(divFormElements);
       });
       slcAutos.addEventListener('change', () => {
             let index = slcAutos.selectedIndex;
