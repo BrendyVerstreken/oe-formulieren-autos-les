@@ -5,39 +5,59 @@ var pre;
 var slcAutos;
 var txtMerk, txtType;
 
-window.addEventListener('load', Initieer);
+window.addEventListener('load', Initieer);
 
-function Initieer() {
-	KoppelElementen();
-	KoppelEvents();
+function Initieer() {
+      KoppelElementen();
+      KoppelEvents();
       VulStandaardwaarden();
       ToonAutos();
 };
 
-const KoppelElementen = () => {
-btnSlaOp = document.getElementById("btnSlaOp");
-divFeedBack = document.getElementById("divFeedBack");
-divMotor = document.getElementById("divMotor");
-divOpties = document.getElementById("divOpties");
-pre = document.getElementById("pre");
-slcAutos = document.getElementById("slcAutos");
-txtMerk = document.getElementById("txtMerk");
-txtType = document.getElementById("txtType");
+const KoppelElementen = () => {
+      btnSlaOp = document.getElementById("btnSlaOp");
+      divFeedBack = document.getElementById("divFeedBack");
+      divMotor = document.getElementById("divMotor");
+      divOpties = document.getElementById("divOpties");
+      pre = document.getElementById("pre");
+      slcAutos = document.getElementById("slcAutos");
+      txtMerk = document.getElementById("txtMerk");
+      txtType = document.getElementById("txtType");
 }
 
-const KoppelEvents = () => {
-	btnSlaOp.addEventListener('click', () => {
-                        
+const KoppelEvents = () => {
+      btnSlaOp.addEventListener('click', () => {
+            let auto = GeefIngegevenAuto();
+            let index = slcAutos.selectedIndex;
+            autos[index] = auto;
+            ToonAutos();
+            //MaakDomElementenLeeg();
       });
       slcAutos.addEventListener('change', () => {
             let index = slcAutos.selectedIndex;
-            if(index >= 0) ToonDetails(index);
+            if (index >= 0) ToonDetails(index);
       })
 }
 
-const VulStandaardwaarden = () => {
+const VulStandaardwaarden = () => {
       slcAutos.selectedIndex = "0";
       ToonDetails(0);
+}
+
+const GeefIngegevenAuto = () => {
+      let merk, type, motor;
+      let opties = [];
+      let auto;
+
+      merk = txtMerk.value;
+      type = txtType.value;
+
+      auto =
+      {
+            'Merk': merk,
+            'Type': type
+      }
+      return auto;
 }
 
 const ToonAutos = () => {
@@ -48,6 +68,7 @@ const ToonAutos = () => {
             let value = index;
             slcAutos.options[index] = new Option(text, value);
       }
+      pre.innerHTML = JSON.stringify(autos, null, 4);
 }
 
 const ToonDetails = (index) => {
@@ -64,15 +85,15 @@ const ToonDetails = (index) => {
 /*
 Bij het opstarten
 Worden in divMoter radiobuttons aangemaakt op basis van de array motorTypes.
-De waarde van de buttons is de index in de array. 
+De waarde van de buttons is de index in de array.
 De naam is 'motor'
 
-Worden in divOpties checkboxes aangemaakt op basis van de array optieLijst. 
-De waarde en id van de checkbox is de naam van de optie. 
+Worden in divOpties checkboxes aangemaakt op basis van de array optieLijst.
+De waarde en id van de checkbox is de naam van de optie.
 De naam is 'gekozenOpties'
 
 De event handlers worden gekoppeld aan slcAuto en btnSlaOp (zie verder)
-in slcAutos worden de namen en types van de autos getoond. 
+in slcAutos worden de namen en types van de autos getoond.
 De hoogte van de listbox wordt ingesteld op basis van de lengte van de array autos
 in pre wordt de array autos op een leesbare manier weergegeven
 Bij keuze voor een auto
