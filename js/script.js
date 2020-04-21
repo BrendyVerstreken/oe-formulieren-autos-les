@@ -28,13 +28,16 @@ txtType = document.getElementById("txtType");
 const KoppelEvents = () => {
 	btnSlaOp.addEventListener('click', () => {
                         
-	});
+      });
+      slcAutos.addEventListener('change', () => {
+            let index = slcAutos.selectedIndex;
+            if(index >= 0) ToonDetails(index);
+      })
 }
 
 const VulStandaardwaarden = () => {
-	slcAutos.selectedIndex = "0";
-	txtMerk.value = "";
-	txtType.value = "";
+      slcAutos.selectedIndex = "0";
+      ToonDetails(0);
 }
 
 const ToonAutos = () => {
@@ -45,6 +48,17 @@ const ToonAutos = () => {
             let value = index;
             slcAutos.options[index] = new Option(text, value);
       }
+}
+
+const ToonDetails = (index) => {
+      let geselecteerdeAuto;
+      let opties;
+      let motorNaam;
+
+      geselecteerdeAuto = autos[index];
+
+      txtMerk.value = geselecteerdeAuto.Merk;
+      txtType.value = geselecteerdeAuto.Type;
 }
 
 /*
