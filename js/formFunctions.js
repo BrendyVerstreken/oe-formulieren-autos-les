@@ -7,6 +7,8 @@ const MaakInputOngedaan = (parentElement) => {
                         childElement.value = '';
                   } else if (inputType == 'checkbox' || inputType == 'radiobutton') {
                         childElement.checked = false;
+                  } else if (inputType == 'select') {
+                        childElement.selectedindex = -1;
                   }
             });
       }
@@ -15,13 +17,31 @@ const MaakInputOngedaan = (parentElement) => {
       });
 }
 
+const MaakCheckBoxen = (titel,keuzes, name, doelElement) => {
+      doelElement.innerHTML = `<h2>${titel}</h2>`;
+      keuzes.forEach(keuze => {
+            let htmlCheckBox = document.createElement('input');
+            htmlCheckBox.type = 'checkbox';
+            htmlCheckBox.name = name;
+            htmlCheckBox.id = 'chk' + keuze;
+            htmlCheckBox.value = keuze;
+            doelElement.appendChild(htmlCheckBox);
+            doelElement.innerHTML += `${keuze} <br />`;
+      });
+}
+
 /*
-
-Breng de code die je gebruikt ivm de checkboxen en radiobuttons onder in een apart js-bestand formFunctions.
-
-Aanmaken van checkboxen/radiobuttons met een bepaalde titel (h2-tag), name in een bepaalde div en op basis van een array van waarden.
-Aanvinken van checkboxen/radiobuttons op basis van de name en  een array met aan te duiden waarden.
-Een array retourneren met de aangevinkte waarden in checkboxen op basis van de name.
-De index retourneren van de aangeduide radiobutton op basis van de name
-Een function om de input van de descendants van een DOM-element ongedaan te maken op basis van de id van het parent element. Doe dit voor inputs van het type text, checkbox en radio. Je kunt dit later uitbreiden naar andere types.
+•	Checkboxen aanmaken op basis van een array 
+      met de keuzemogelijkheden
+•	Een groep van checkboxen met een bepaalde naam laten afvinken
+•	Checkboxen laten aanvinken op basis van een array 
+      met de keuzemogelijkheden die aangevinkt moeten worden
+•	De waarden in groep van checkboxen met een bepaalde naam 
+      die aangevinkt zijn retourneren als een array
+•	Keuzerondjes aanmaken op basis van een array 
+      met de keuzemogelijkheden en ze retourneren
+•	De index van het aangevinkte keuzerondje 
+      in groep van keuzerondjes met een bepaalde naam retourneren 
+•	Een function MaakInputOngedaan die alle input 
+      in een bepaald DOM-element en zijn descendants ongedaan maakt.
 */

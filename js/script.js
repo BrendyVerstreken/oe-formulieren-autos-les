@@ -5,13 +5,19 @@ var pre;
 var slcAutos;
 var txtMerk, txtType;
 
+const ChkOptiesNaam = 'gekozenOptie';
+const RdbMotorNaam = 'motorKeuze';
+
+
 window.addEventListener('load', Initieer);
 
 function Initieer() {
       KoppelElementen();
       KoppelEvents();
       VulStandaardwaarden();
+      MaakCheckBoxen('Opties', optieLijst, ChkOptiesNaam, divOpties)
       ToonAutos();
+
 };
 
 const KoppelElementen = () => {
